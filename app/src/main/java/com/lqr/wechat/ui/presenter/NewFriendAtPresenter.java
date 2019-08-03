@@ -102,7 +102,7 @@ public class NewFriendAtPresenter extends BasePresenter<INewFriendAtView> {
                         helper.setViewVisibility(R.id.tvAdded, View.VISIBLE)
                                 .setViewVisibility(R.id.tvWait, View.GONE)
                                 .setViewVisibility(R.id.btnAck, View.GONE);
-                    } else if (item.getStatus() == 11) {//别人发来的添加好友请求
+                    } else if (item.getStatus() == 11 || item.getStatus() == 30) {//别人发来的添加好友请求或被人删了再次发加好友请求
                         helper.setViewVisibility(R.id.tvAdded, View.GONE)
                                 .setViewVisibility(R.id.tvWait, View.GONE)
                                 .setViewVisibility(R.id.btnAck, View.VISIBLE);

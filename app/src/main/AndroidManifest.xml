@@ -66,7 +66,7 @@
         <!-- imlib config begin -->
         <meta-data
             android:name="RONG_CLOUD_APP_KEY"
-            android:value="qf3d5gbjqhqch" />
+            android:value="n19jmcy59f1q9" />
 
         <service
             android:name="io.rong.imlib.ipc.RongService"

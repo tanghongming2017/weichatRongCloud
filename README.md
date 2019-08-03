@@ -6,7 +6,7 @@
 * [二、功能](#二、功能)
 * [三、效果图](#三、效果图)
 * [四、其他相关](#四、其他相关)
-* [五、打赏支持](#五、打赏支持)
+* [五、遗留问题](#五、遗留问题)
 
 # 一、简述
 
@@ -17,7 +17,7 @@
 >项目源码地址：[码云：LQRWeChatRongCloud](https://git.oschina.net/CSDNLQR/lqrwechatrongcloud)
 >
 >项目DemoApp下载：[Demo](https://git.oschina.net/CSDNLQR/lqrwechatrongcloud/blob/master/app-debug.apk?dir=0&filepath=app-debug.apk&oid=80f630859d9894c62406951929448f68ec7205e3&sha=1c65a0feab5c134a4c87889f8a5e21c7910a9a8f)
-	
+
 ## 1、简单介绍一下：
 这个项目是本人独立开发的第二个高仿微信项目，仿最新版微信6.5.7（除图片选择器外）。本项目基于融云SDK，使用目前较火的 Rxjava+Retrofit+MVP+Glide 技术开发。相比上个版本，加入发送位置消息，红包消息等功能。本项目由码云平台托管，欢迎start和fork~~
 
@@ -140,11 +140,12 @@
 
 不提供测试号，请使用自己手机注册后登录，因为本人手机号有限，测试上很有局限，可能存在一些我不知道的bug，请多包涵，可在项目中提出issue。本人做这个项目只为提升个人安卓开发能力，故依赖融云官方给出的server端做为本项目的后台服务，该server源码使用Node.js开发，目前本人只会用java开发后端，所以如果要搞点别的功能的话，目前是不可能啦，有兴趣的同学可以看看这个[嗨豹 IM 应用服务器](https://github.com/sealtalk/sealtalk-server)，当然融云也有它的坑，特别是红包module，我干脆不用它的了，希望该项目可以帮到那些正在踩坑的人（至少我已经踩了一次了，嘿嘿），此外，很感谢很多网友对我的支持，还有专门跑到CSDN跟我私信给我鼓励的，真的很感动，谢谢。
 
-# 五、打赏支持
+# 五、遗留问题
 
-最后，如果觉得本项目对您有用，请随意打赏，鼓励我继续创作，谢谢啦。
-
-![wechat](screenshots/wechat_pay.png)
-![alipay](screenshots/alipay.png)
+1、扫码添加好友后，对方没有通知信息
+2、在删除好友后，通讯录页面还有历史好友信息
+3、“新的朋友”界面，在用户被删除好友后再次添加好友时，用户的点击接受按钮会报404错误
+---服务器端/friendship/agree接口逻辑需要调整
+4、我的页面，点击用户信息后，用户信息是默认的信息--已修改
 
 

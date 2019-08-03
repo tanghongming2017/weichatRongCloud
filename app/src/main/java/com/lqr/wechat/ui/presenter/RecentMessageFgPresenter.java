@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -99,6 +100,7 @@ public class RecentMessageFgPresenter extends BasePresenter<IRecentMessageFgView
             if (item.getConversationType() == Conversation.ConversationType.GROUP) {
                 List<GroupMember> groupMembers = DBManager.getInstance().getGroupMembers(item.getTargetId());
                 if (groupMembers == null || groupMembers.size() == 0) {
+                    Log.e("--test--","targetId:"+item.getTargetId());
                     DBManager.getInstance().deleteGroupsById(item.getTargetId());//删除没有群成员的群
                     conversations.remove(i);
                     i--;

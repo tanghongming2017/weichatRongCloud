@@ -3,6 +3,7 @@ package com.lqr.wechat.db;
 import android.content.ContentValues;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.lqr.wechat.api.ApiRetrofit;
 import com.lqr.wechat.app.AppConst;
@@ -271,6 +272,7 @@ public class DBManager {
      * 清除所有用户数据
      */
     public void deleteAllUserInfo() {
+        Log.e("--test--","deleteAllUserInfo");
 //        deleteFriends();
 //        deleteGroups();
 //        deleteGroupMembers();
@@ -309,10 +311,10 @@ public class DBManager {
                 friend.setPortraitUri(portrait);
             }
             friend.saveOrUpdate("userid = ?", friend.getUserId());
-            //更新过本地好友数据后，清空内存中对应用户信息缓存
-            if (mUserInfoCache != null && mUserInfoCache.containsKey(friend.getUserId())) {
-                mUserInfoCache.remove(friend.getUserId());
-            }
+//            //更新过本地好友数据后，清空内存中对应用户信息缓存
+//            if (mUserInfoCache != null && mUserInfoCache.containsKey(friend.getUserId())) {
+//                mUserInfoCache.remove(friend.getUserId());
+//            }
         }
     }
 
@@ -358,6 +360,7 @@ public class DBManager {
     }
 
     public synchronized void deleteFriends() {
+        Log.e("--test--","deleteFriends");
         List<Friend> friends = getFriends();
         for (Friend friend : friends) {
             friend.delete();
@@ -365,6 +368,7 @@ public class DBManager {
     }
 
     public synchronized void deleteFriendById(String friendId) {
+        Log.e("--test--","deleteFriendById");
         DataSupport.deleteAll(Friend.class, "userid = ?", friendId);
     }
 
@@ -383,6 +387,7 @@ public class DBManager {
     }
 
     public synchronized void deleteGroup(Groups groups) {
+        Log.e("--test--","deleteGroup1");
         DataSupport.deleteAll(Groups.class, "groupid = ?", groups.getGroupId());
     }
 
@@ -416,10 +421,12 @@ public class DBManager {
     }
 
     public synchronized void deleteGroups() {
+        Log.e("--test--","deleteGroup");
         DataSupport.deleteAll(Groups.class);
     }
 
     public synchronized void deleteGroupsById(String groupId) {
+        Log.e("--test--","deleteGroupsById");
         DataSupport.deleteAll(Groups.class, "groupid = ?", groupId);
     }
 
@@ -482,10 +489,12 @@ public class DBManager {
     }
 
     public synchronized void deleteGroupMembers() {
+        Log.e("--test--","deleteGroupMembers");
         DataSupport.deleteAll(GroupMember.class);
     }
 
     public synchronized void deleteGroupMembers(String groupId, List<String> kickedUserIds) {
+        Log.e("--test--","deleteGroupMembers1");
         if (kickedUserIds != null && kickedUserIds.size() > 0) {
             for (String userId : kickedUserIds) {
                 DataSupport.deleteAll(GroupMember.class, "groupid = ? and userid = ?", groupId, userId);
@@ -496,6 +505,7 @@ public class DBManager {
     }
 
     public synchronized void deleteGroupMembersByGroupId(String groupId) {
+        Log.e("--test--","deleteGroupMembersByGroupId");
         DataSupport.deleteAll(GroupMember.class, "groupid = ?", groupId);
     }
 

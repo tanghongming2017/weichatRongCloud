@@ -55,7 +55,7 @@ public class BaseApiRetrofit {
                 .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
                 .addInterceptor(new LoggingInterceptor())
 //                .addInterceptor(loggingInterceptor)//设置 Debug Log 模式
-                .cache(cache)
+//                .cache(cache)
                 .cookieJar(cookieJar)
                 .build();
     }

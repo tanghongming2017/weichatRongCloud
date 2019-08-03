@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.net.Uri;
+import android.text.TextUtils;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.alibaba.fastjson.JSONException;
@@ -161,8 +163,11 @@ public class MyApp extends BaseApp implements RongIMClient.OnReceiveMessageListe
 
                 }
             });
-            DBManager.getInstance().deleteFriendById(contact_id);
-            BroadcastManager.getInstance(getContext()).sendBroadcast(AppConst.UPDATE_FRIEND);
+            //由于消息是群发，自己也会受到消息，会导致自己把自己删除，这里需要做一下判断
+            if (!TextUtils.equals(contact_id, UserCache.getId())) {
+                DBManager.getInstance().deleteFriendById(contact_id);
+                BroadcastManager.getInstance(getContext()).sendBroadcast(AppConst.UPDATE_FRIEND);
+            }
         } else if (messageContent instanceof GroupNotificationMessage) {
             GroupNotificationMessage groupNotificationMessage = (GroupNotificationMessage) messageContent;
             String groupId = message.getTargetId();
@@ -335,6 +340,7 @@ public class MyApp extends BaseApp implements RongIMClient.OnReceiveMessageListe
         try {
             RongIMClient.registerMessageType(RedPacketMessage.class);
             RongIMClient.registerMessageType(DeleteContactMessage.class);
+            RongIMClient.registerMessageType(ContactNotificationMessage.class);
         } catch (AnnotationNotFoundException e) {
             e.printStackTrace();
         }

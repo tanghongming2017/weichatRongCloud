@@ -2,6 +2,7 @@ package com.lqr.wechat.ui.presenter;
 
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.lqr.wechat.R;
@@ -31,6 +32,7 @@ public class MeFgPresenter extends BasePresenter<IMeFgView> {
     }
 
     public void loadUserInfo() {
+        Log.e("--test--","-----1-----");
         mUserInfo = DBManager.getInstance().getUserInfo(UserCache.getId());
         if (mUserInfo == null || isFirst) {
             isFirst = false;
@@ -45,8 +47,10 @@ public class MeFgPresenter extends BasePresenter<IMeFgView> {
                             if (TextUtils.isEmpty(mUserInfo.getPortraitUri().toString())) {
                                 mUserInfo.setPortraitUri(Uri.parse(DBManager.getInstance().getPortraitUri(mUserInfo)));
                             }
-
+                            Log.e("--test--","-----2-----id:"+mUserInfo.getUserId());
                             DBManager.getInstance().saveOrUpdateFriend(new Friend(mUserInfo.getUserId(), mUserInfo.getName(), mUserInfo.getPortraitUri().toString()));
+                            UserInfo info = DBManager.getInstance().getUserInfo(mUserInfo.getUserId());
+                            Log.e("--test--","-----3-----id:"+info.getUserId());
                             fillView();
                         }
                     }, this::loadError);

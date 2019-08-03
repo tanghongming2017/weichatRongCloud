@@ -1,5 +1,7 @@
 package com.lqr.wechat.ui.presenter;
 
+import android.util.Log;
+
 import com.bumptech.glide.Glide;
 import com.lqr.imagepicker.bean.ImageItem;
 import com.lqr.wechat.R;
@@ -34,6 +36,7 @@ public class MyInfoAtPresenter extends BasePresenter<IMyInfoAtView> {
 
     public void loadUserInfo() {
         mUserInfo = DBManager.getInstance().getUserInfo(UserCache.getId());
+        Log.e("--test--","-----5-----mUserInfo:"+mUserInfo);
         if (mUserInfo != null) {
             Glide.with(mContext).load(mUserInfo.getPortraitUri()).centerCrop().into(getView().getIvHeader());
             getView().getOivName().setRightText(mUserInfo.getName());
